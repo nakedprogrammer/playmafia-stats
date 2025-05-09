@@ -20,6 +20,10 @@ jobs:
         with:
           fetch-depth: 0
 
+      - name: Check docker-compose version
+        run: |
+          docker-compose --version
+
       - name: Install ssh keys
         run: |
           install -m 600 -D /dev/null ~/.ssh/id_rsa
