@@ -51,7 +51,8 @@ jobs:
         run: |
           ls -la
           whoami
-          sudo setfacl --modify user:$(whoami):rw /var/run/docker.sock
+          sudo setfacl --modify u:$(whoami):rw /var/run/docker.sock
+          sudo setfacl --modify group:docker:rw /var/run/docker.sock
           docker-compose --context remote -f docker/docker-compose.yaml up -d
 
       - name: cleanup
