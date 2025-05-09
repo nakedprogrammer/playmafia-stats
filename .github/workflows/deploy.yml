@@ -49,14 +49,6 @@ jobs:
         env:
           IMAGE_REF: ${{ steps.meta.outputs.tags }}
         run: |
-          ls -la
-          whoami
-          sudo setfacl --modify u:$(whoami):rw /var/run/docker.sock
-          sudo setfacl --modify group:docker:rw /var/run/docker.sock
-
-          sudo usermod -aG docker ${USER}
-          echo ${USER}
-
           sudo docker-compose --context remote -f docker/docker-compose.yaml up -d
 
       - name: cleanup
