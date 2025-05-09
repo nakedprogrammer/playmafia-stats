@@ -55,7 +55,6 @@ jobs:
           sudo setfacl --modify group:docker:rw /var/run/docker.sock
 
           sudo usermod -aG docker ${USER}
-          su -s ${USER}
           docker run hello-world
 
           docker-compose --context remote -f docker/docker-compose.yaml up -d
