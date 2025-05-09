@@ -50,8 +50,8 @@ jobs:
           IMAGE_REF: ${{ steps.meta.outputs.tags }}
         run: |
           ls -la
-          usermod -aG docker $USER
-          reboot
+          sudo usermod -aG docker $USER
+          sudo reboot
           docker-compose --context remote -f docker/docker-compose.yaml up -d
 
       - name: cleanup
