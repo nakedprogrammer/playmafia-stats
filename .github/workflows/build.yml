@@ -11,7 +11,9 @@ env:
 jobs:
     build:
         runs-on: ubuntu-latest
-
+        permissions:
+          contents: read
+          packages: write
         steps:
             - name: Checkout code
               uses: actions/checkout@v4
@@ -30,9 +32,7 @@ jobs:
                 images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
             
             - name: Build and push Docker image
-              permissions:
-                contents: read
-                packages: write
+              
               uses: docker/build-push-action@v5.3.0
               with:
                 context: ./docker/php/
