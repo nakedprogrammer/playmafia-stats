@@ -51,7 +51,6 @@ jobs:
         run: |
           ls -la
           sudo usermod -aG docker $USER
-          sudo reboot
           docker-compose --context remote -f docker/docker-compose.yaml up -d
 
       - name: cleanup
