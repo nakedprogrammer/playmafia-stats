@@ -30,9 +30,13 @@ jobs:
                 images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
             
             - name: Build and push Docker image
+              permissions:
+                contents: read
+                packages: write
               uses: docker/build-push-action@v5.3.0
               with:
                 context: ./docker/php/
                 push: true
                 tags: ${{ steps.meta.outputs.tags }}
                 labels: ${{ steps.meta.outputs.labels }}
+              
