@@ -49,7 +49,7 @@ jobs:
         env:
           IMAGE_REF: ${{ steps.meta.outputs.tags }}
         run: |
-          docker-compose --context remote -f ./docker/docker-compose.yml up -d
+          docker-compose --context remote -f docker/docker-compose.yml up -d
 
       - name: cleanup
         run: rm -rf ~/.ssh
