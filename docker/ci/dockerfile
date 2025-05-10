@@ -2,3 +2,8 @@ FROM docker:24.0
 
 RUN docker compose version
 RUN docker-compose --version
+
+WORKDIR /app
+
+# Копируем все файлы, полученные через checkout в GitHub Actions, в контейнер
+COPY . .
