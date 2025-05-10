@@ -46,6 +46,7 @@ jobs:
           docker run --rm ${{env.IMAGE_REF}} \
           sh -c "docker context create remote --docker host=ssh://${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} && \
           pwd && \  
+          ls -la && \  
           docker-compose --context remote -f docker/docker-compose.yaml up -d"
 
           
