@@ -45,6 +45,8 @@ jobs:
           IMAGE_REF: ${{ steps.meta.outputs.tags }}
         run: |
           echo ${{ steps.meta.outputs.tags }}
+          docker --version  # Проверить, что Docker доступен
+          docker-compose --version  # Проверить, что Docker Compose доступен
           docker-compose --context remote -f docker/docker-compose.yaml up -d
 
       - name: cleanup
