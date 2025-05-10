@@ -22,9 +22,7 @@ jobs:
 
       - name: Install ssh keys
         run: |
-          install -m 600 -D /dev/null ~/.ssh/id_rsa
-          echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa
-          ssh-keyscan -H ${{ secrets.SSH_HOST }} > ~/.ssh/known_hosts
+          
 
       - name: Extract metadata (tags, labels) for Docker
         id: meta
@@ -46,10 +44,10 @@ jobs:
           docker run --rm ${{env.IMAGE_REF}} \
           sh -c "docker context create remote --docker host=ssh://${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} && \
           pwd && \  
-          ls -la && \  
-          docker-compose --context remote -f /app/docker/docker-compose.yaml up -d"
+          ls -la && \
+          install -m 600 -D /dev/null ~/.ssh/id_rsa && \
+          echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa && \
+          ssh-keyscan -H ${{ secrets.SSH_HOST }} > ~/.ssh/known_hosts && \  
+          docker-compose --context remote -f /app/docker/docker-compose.yaml up -d && \
+          rm -rf ~/.ssh"
 
-          
-
-      - name: cleanup
-        run: rm -rf ~/.ssh
