@@ -40,23 +40,15 @@ jobs:
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
 
-      
-
-      - name: Install Docker Compose
-        run: |
-            # Устанавливаем последнюю версию Docker Compose
-            sudo curl -L "https://github.com/docker/compose/releases/download/$(curl -s https://api.github.com/repos/docker/compose/releases/latest | jq -r .tag_name)/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
-            
-            # Даем права на выполнение
-            sudo chmod +x /usr/local/bin/docker-compose
-  
-            # Проверяем версию Docker Compose
-            docker-compose --version
-        
       - name: Docker compose
+        env:
+          IMAGE_REF: ${{ steps.meta.outputs.tags }}
         run: |
-          docker-compose --version  # Проверить, что Docker Compose доступен
-          docker-compose --context remote -f docker/docker-compose.yaml up -d
+          docker run --rm ${{env.IMAGE_REF}} \
+          bash -c "echo 'Hello from inside Docker!' 
+            && docker-compose --context remote -f docker/docker-compose.yaml up -d"
+
+          
 
       - name: cleanup
         run: rm -rf ~/.ssh
