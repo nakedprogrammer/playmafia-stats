@@ -45,7 +45,7 @@ jobs:
           IMAGE_REF: ${{ steps.meta.outputs.tags }}
         run: |
           docker run --rm ${{env.IMAGE_REF}} \
-          bash -c "echo 'Hello from inside Docker!' 
+          sh -c "echo 'Hello from inside Docker!' 
             && docker-compose --context remote -f docker/docker-compose.yaml up -d"
 
           
