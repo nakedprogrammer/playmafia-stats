@@ -23,4 +23,5 @@ RUN curl -L "https://github.com/docker/compose/releases/latest/download/docker-c
 
 COPY --from=composer:latest /usr/bin/composer /usr/local/bin/composer
 
+RUN docker compose version
 # TODO:add nginx/default config copy to prod step
