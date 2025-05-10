@@ -22,5 +22,5 @@ RUN curl -L "https://github.com/docker/compose/releases/latest/download/docker-c
     chmod +x /usr/local/bin/docker-compose
 
 COPY --from=composer:latest /usr/bin/composer /usr/local/bin/composer
-RUN ls -la
+RUN date > /tmp/build_time && ls -la
 COPY ../../docker/nginx/conf.d/ ./nginx/conf.d/
