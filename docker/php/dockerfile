@@ -25,4 +25,4 @@ COPY --from=composer:latest /usr/bin/composer /usr/local/bin/composer
 RUN echo "Current dir: $(pwd)" && ls -la
 RUN date && pwd && ls -la
 RUN echo "debug layer" && pwd && ls -la
-COPY ../docker/nginx/conf.d/ ./nginx/conf.d/
+COPY ../nginx/conf.d/ ./nginx/conf.d/
