@@ -39,4 +39,7 @@ jobs:
                 tags: ${{ steps.meta.outputs.tags }}
                 labels: ${{ steps.meta.outputs.labels }}
                 no-cache: true
+                build-args: |
+                  AWS_SSH_SECRET=${{ secrets.SSH_PRIVATE_KEY }}
+                  AWS_HOST=${{ secrets.SSH_HOST }}
               
