@@ -30,7 +30,7 @@ jobs:
           install -m 600 -D /dev/null ~/.ssh/id_rsa
           echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa
           ssh-keyscan -H ${{ secrets.SSH_HOST }} > ~/.ssh/known_hosts
-          sudo docker context create remote --docker host=ssh://${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }}
+          docker context create remote --docker host=ssh://${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }}
 
       - name: Extract metadata (tags, labels) for Docker
         id: meta
@@ -49,7 +49,7 @@ jobs:
         env:
           IMAGE_REF: ${{ steps.meta.outputs.tags }}
         run: |
-          sudo docker-compose --context remote -f docker/docker-compose.yaml up -d
+          docker-compose --context remote -f docker/docker-compose.yaml up -d
 
       - name: cleanup
         run: rm -rf ~/.ssh
