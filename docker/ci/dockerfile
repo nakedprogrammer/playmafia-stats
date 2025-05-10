@@ -6,4 +6,4 @@ RUN docker-compose --version
 WORKDIR /app
 
 # Копируем все файлы, полученные через checkout в GitHub Actions, в контейнер
-COPY . .
+COPY ../../ .
