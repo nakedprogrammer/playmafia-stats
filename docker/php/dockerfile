@@ -1,21 +1,4 @@
-FROM php:8.4-fpm
-
-RUN apt-get update && apt-get install -y \
-        libicu-dev \
-    && docker-php-ext-install \
-        intl \
-        mysqli pdo pdo_mysql \
-    && docker-php-ext-enable \
-        intl \
-        mysqli pdo pdo_mysql \
-    && apt-get install -y git
-
-RUN apt-get update && apt-get install -y \
-    librabbitmq-dev \
-    && rm -rf /var/lib/apt/lists/*
-
-RUN pecl install amqp \
-    && docker-php-ext-enable amqp
+FROM docker:24.0
 
 RUN curl -L "https://github.com/docker/compose/releases/latest/download/docker-compose-$(uname -s)-$(uname -m)" \
     -o /usr/local/bin/docker-compose && \
