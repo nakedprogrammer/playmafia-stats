@@ -50,7 +50,8 @@ jobs:
           docker context use remote && \
           pwd && \  
           ls -la && \
-          ls -la ~/.ssh/id_rsa"
+          ls -la ~/.ssh/id_rsa && \
+          docker-compose --context remote -f /app/docker/docker-compose.yaml up -d"
           
           
           
