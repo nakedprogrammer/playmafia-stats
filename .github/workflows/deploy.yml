@@ -53,6 +53,8 @@ jobs:
           pwd && \  
           ls -la && \
           ls -la ~/.ssh/id_rsa && \
+          
+          ssh-keyscan -H "ec2-13-61-148-100.eu-north-1.compute.amazonaws.com" > ~/.ssh/known_hosts
           docker-compose --context remote -f /app/docker/docker-compose.yaml up -d"
           
           
