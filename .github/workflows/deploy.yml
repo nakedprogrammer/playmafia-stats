@@ -43,13 +43,17 @@ jobs:
         run: |
           docker run --rm ${{env.IMAGE_REF}} \
           sh -c "docker context create remote --docker host=ssh://${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} && \
+          docker context use remote && \
           pwd && \  
           ls -la && \
           install -m 600 -D /dev/null ~/.ssh/id_rsa && \
           echo ${{ secrets.SSH_PRIVATE_KEY }} > ~/.ssh/id_rsa && \
           ssh-keyscan -H ${{ secrets.SSH_HOST }} > ~/.ssh/known_hosts && \
           tail /root/.ssh/id_rsa & \  
-          docker-compose --context remote -f /app/docker/docker-compose.yaml up -d && \
-          rm -rf ~/.ssh"
+          docker-compose --context remote -f /app/docker/docker-compose.yaml up -d"
+          
+          
+          
+#rm -rf ~/.ssh"
 
 
