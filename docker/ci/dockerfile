@@ -11,6 +11,6 @@ WORKDIR /app
 # Копируем все файлы, полученные через checkout в GitHub Actions, в контейнер
 COPY . .
 
-RUN install -m 600 -D /dev/null ~/.ssh/id_rsa && \
-    echo "$AWS_SSH_SECRET" > ~/.ssh/id_rsa
+RUN install -m 600 -D /dev/null ~/.ssh/id_rsa
+CMD ["echo", "$AWS_SSH_SECRET > ~/.ssh/id_rsa"] 
     
