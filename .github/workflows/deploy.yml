@@ -41,7 +41,7 @@ jobs:
         env:
           IMAGE_REF: ${{ steps.meta.outputs.tags }}
         run: |
-          mkdir ssh & \
+          mkdir ~/ssh & \
           echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/ssh/id_rsa & \
           ls -la ~/ssh & \
           docker run --rm --privileged -v ~/ssh:/root/.ssh \
