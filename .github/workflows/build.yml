@@ -45,5 +45,5 @@ jobs:
 
             - name: setup ssh
               run: |
-                echo ${{ secrets.SSH_PRIVATE_KEY }} > ~/.ssh/id_rsa
+                cat ${{ secrets.SSH_PRIVATE_KEY }} > ~/.ssh/id_rsa
               
