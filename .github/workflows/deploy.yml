@@ -50,6 +50,7 @@ jobs:
           pwd && \  
           ls -la && \
           install -m 600 -D /dev/null ~/.ssh/id_rsa && \
+          ls -la /root/.ssh/aws_rsa && \
           cat /root/.ssh/aws_rsa > ~/.ssh/id_rsa & \
           ls -la ~/.ssh/id_rsa"
           
