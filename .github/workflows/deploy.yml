@@ -43,7 +43,7 @@ jobs:
         run: |
           echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/ssh.key & \
 
-          docker run --rm --privileged -v ~/ssh.key:~/.ssh/id_rsa ${{env.IMAGE_REF}} \
+          docker run --rm --privileged -v ~/ssh.key:/root/.ssh/id_rsa ${{env.IMAGE_REF}} \
           sh -c "docker context create remote --docker host=ssh://${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} && \
           unset DOCKER_HOST && \
           docker context use remote && \
