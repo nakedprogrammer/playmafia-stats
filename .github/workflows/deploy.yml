@@ -42,7 +42,7 @@ jobs:
           IMAGE_REF: ${{ steps.meta.outputs.tags }}
         run: |
           export SECRET = "${{ secrets.SSH_PRIVATE_KEY }}" & \
-          docker run --rm --privileged ${{env.IMAGE_REF}} -e SECRET \
+          docker run --rm --privileged -e SECRET ${{env.IMAGE_REF}} \
           sh -c "docker context create remote --docker host=ssh://${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} && \
           unset DOCKER_HOST && \
           docker context use remote && \
