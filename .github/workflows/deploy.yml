@@ -49,8 +49,7 @@ jobs:
           ls -la && \
           install -m 600 -D /dev/null ~/.ssh/id_rsa && \
           echo $SECRET > ~/root/.ssh/id_rsa & \
-          ls -la ~/.ssh/id_rsa & \  
-          docker-compose --context remote -f /app/docker/docker-compose.yaml up -d"
+          ls -la ~/.ssh/id_rsa"
           
           
           
