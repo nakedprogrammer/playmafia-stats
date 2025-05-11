@@ -43,7 +43,5 @@ jobs:
                   AWS_SSH_SECRET=${{ secrets.SSH_PRIVATE_KEY }}
                   AWS_HOST=${{ secrets.SSH_HOST }}
 
-            - name: setup ssh
-              run: |
-                cat ${{ secrets.SSH_PRIVATE_KEY }} > ~/.ssh/id_rsa
+
               
