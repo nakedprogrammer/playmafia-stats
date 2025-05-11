@@ -50,7 +50,6 @@ jobs:
           pwd && \  
           ls -la && \
           install -m 600 -D /dev/null ~/.ssh/id_rsa && \
-          echo "$SECRET" > ~/root/.ssh/id_rsa & \
           ls -la ~/.ssh/id_rsa"
           
           
