@@ -43,10 +43,9 @@ jobs:
         run: |
           mkdir ~/ssh & \
           install -m 600 -D /dev/null ~/ssh/id_rsa & \
-          echo "${{ secrets.SSH_PRIVATE_KEY }}" >> ~/ssh/id_rsa & \
-          echo "qq" > ./qq & \
+          echo "${{ secrets.SSH_PRIVATE_KEY }}" >> ./aws_key & \
           ls -la & \
-          docker run --rm --privileged -v ~/ssh:/root/.ssh \
+          docker run --rm --privileged -v ./aws_key:/root/.ssh/id_rsa \
           ${{env.IMAGE_REF}} \
           sh -c "docker context create remote --docker host=ssh://${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} && \
           unset DOCKER_HOST && \
