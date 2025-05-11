@@ -42,7 +42,7 @@ jobs:
           IMAGE_REF: ${{ steps.meta.outputs.tags }}
         run: |
           echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa & \
-          ls -la ~/.ssh/id_rsa & \
+          ls -la ~/.ssh & \
           docker run --rm --privileged -v ~/.ssh:/root/.ssh \
           ${{env.IMAGE_REF}} \
           sh -c "docker context create remote --docker host=ssh://${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} && \
